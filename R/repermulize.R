@@ -332,7 +332,7 @@ repermulize_wrapper <- function(
       real_pheno_sd <- real_pheno_sd[reduced_tree$tip.label]
     }
     
-    if (verbose) pz.message("Calculating real PICs...")
+    if (verbose) message("Calculating real PICs...")
     # calculate real PICs
     if (!is.null(real_pheno_sd)) {
       # use the actual SDs to best augment the tree
@@ -356,7 +356,7 @@ repermulize_wrapper <- function(
     if (is.null(real_PICs)) {
       real_PICs <- order_pic_wrapper(real_rescaled_tree, real_pheno)
     }
-    if (verbose) pz.message("Calculating fake PICs...")
+    if (verbose) message("Calculating fake PICs...")
     if (is.null(real_pheno_sd)) perm_pheno_sd = NULL
     if (is.null(perm_pheno)) {
       if (just_scramble_PICs) {
