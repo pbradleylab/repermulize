@@ -290,7 +290,8 @@ repermulize_wrapper <- function(
   verbose = TRUE,
   perm_method = "permulate",
   rank = FALSE,
-  chunk_size = 10,
+  chunk_size = 10, # deprecated, does nothing
+  scheduling = 10L,
   use_futures = TRUE,
   pb_type = "timer",
   permulate_use_sd = FALSE,
@@ -305,10 +306,10 @@ repermulize_wrapper <- function(
         f,
         cl = "future",
         future.scheduling = structure(
-          chunk_size,
-          ordering = "random",
-          future.seed = TRUE
-        )
+          scheduling,
+          ordering = "random"
+	),
+        future.seed = TRUE
       )
     }
   } else {
