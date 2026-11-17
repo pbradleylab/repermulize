@@ -266,7 +266,7 @@ order_pic_wrapper <- function(a, b) {
 #' @param perm_pheno Optionally, can directly provide permulated or otherwise randomized phenotypes.
 #' @param real_pheno_sd Optionally, a vector giving the standard deviation of the mean for each phenotype value.
 #' @param save_everything Should intermediate results be returned? Useful for debugging. (Default: FALSE) 
-#' @param p_model Optionally, a model of evolution other than Brownian motion (used to transform the tree; see `phylolm::transf.branch.lengths()`).
+#' @param perm_model Optionally, a model of evolution other than Brownian motion (used to transform the tree; see `phylolm::transf.branch.lengths()`).
 #' @param ub Upper bound on parameter in p_model.
 #' @param lb Lower bound on parameter in p_model.
 #' @param verbose Talk more?
@@ -283,7 +283,7 @@ repermulize_wrapper <- function(
   genes_are_PICs = FALSE,
   real_PICs = NULL,
   just_scramble_PICs = FALSE,
-  perm_model = "BM",
+  perm_model = "lambda",
   n = 1000,
   ub = 0.99,
   lb = 0.01,
@@ -373,7 +373,7 @@ repermulize_wrapper <- function(
             real_rescaled_tree,
             n,
             pheno_sd = psd,
-            p_model = "BM"
+            p_model = "BM" # we're already using a rescaled tree, so don't rescale again
           )
       } else if (perm_method=="permutrate") {
         perm_pheno <- permutrate(real_pheno, real_rescaled_tree, n, rank=rank)
